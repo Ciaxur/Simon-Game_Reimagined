@@ -1,0 +1,229 @@
+/* Imports */
+@import url('https://fonts.googleapis.com/css?family=Mukta+Mahee:700');
+
+/* Global Styles */
+
+body { background-color: #131829; font-family: 'Mukta Mahee', sans-serif; margin: 0; padding: 0; }
+h2	 { color: white; margin-bottom: -5px;}
+
+img
+{
+	width: 200px;
+	height: 400px;
+}
+
+
+/* Class Styles */
+
+.container
+{
+	width: 	400px;
+	height: 200px;
+}
+
+.absolute-center
+{
+	position: absolute;
+	margin: auto;
+
+	right: 0;
+	left: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.text-center
+{
+	text-align: center;
+}
+
+.svg-sky
+{
+	height:100vh;
+
+	overflow: hidden;
+}
+
+
+.score
+{
+	font-size: 40px;
+	color: white;
+}
+
+.status
+{
+	font-size: 80px;
+
+	opacity: 0;
+	color: white;
+}
+
+.strictMode
+{
+	position: absolute;
+	margin: auto;
+
+	top: 10;
+	left: 10;
+	right: 10;
+	bottom: 0;
+
+	opacity: 10;
+}
+
+.easteregg
+{
+	opacity: 0;
+
+	position: absolute;
+	bottom: 0;
+	left: 0;
+
+	-ms-transform: rotate(90deg); 		/* IE 9 */
+    -webkit-transform: rotate(90deg); 	/* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+}
+
+
+/* SVG Classes */
+.st0{ fill:#131829; }
+.st1{ fill:#D8D6D5; }
+.st3{ fill:none; }
+
+
+.st2						  /* Clickable Clouds */
+{ 
+	fill:#999999;
+	cursor: pointer;
+}
+
+
+/* CreativeButtons CSS */
+.btn 
+{
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	background: none;
+	cursor: pointer;
+	padding: 25px 80px;
+	display: inline-block;
+	margin: 15px 30px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 700;
+	outline: none;
+	position: relative;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btn:after 
+{
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btn:before 
+{
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	position: relative;
+	-webkit-font-smoothing: antialiased;
+}
+
+.btn-2 
+{
+	background: #cb4e4e;
+	color: #fff;
+	box-shadow: 0 6px #ab3c3c;
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+}
+
+.btn-2g { border-radius: 40px; }
+
+.btn-2g:hover 
+{
+	box-shadow: 0 4px #ab3c3c;
+	top: 2px;
+}
+
+.btn-2g:active 
+{
+	box-shadow: 0 0 #ab3c3c;
+	top: 6px;
+}
+
+/* W3 Switch Toggle CSS */
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

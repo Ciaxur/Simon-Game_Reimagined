@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Simon Game Reimagined</title>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+
+	<link rel="stylesheet" href="main.css">
+	<script src="main.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+
+<body>
+
+	<div class="svg-sky">
+		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 		viewBox="0 0 1920 1080" style="enable-background:new 0 0 1920 1080;" xml:space="preserve">
+
+	 		<!-- Background Sky -->
+			<g id="Night_Sky">
+				<g>
+					<rect class="st0" width="1920" height="1080"/>
+				</g>
+			</g>
+
+			<!-- Sky Stars -->
+			<g id="Stars">
+				<circle class="st1" cx="1682" cy="124" r="5"/>
+				<circle class="st1" cx="1828" cy="55" r="3"/>
+				<circle class="st1" cx="953" cy="586" r="6"/>
+				<circle class="st1" cx="720" cy="498" r="6"/>
+				<circle class="st1" cx="525" cy="562" r="6"/>
+				<circle class="st1" cx="574" cy="847" r="6"/>
+				<circle class="st1" cx="685" cy="250" r="6"/>
+				<circle class="st1" cx="1069" cy="173" r="5"/>
+				<circle class="st1" cx="908.5" cy="224.5" r="2.5"/>
+				<circle class="st1" cx="1608" cy="550" r="6"/>
+				<circle class="st1" cx="1569" cy="317" r="6"/>
+				<circle class="st1" cx="1376" cy="540" r="6"/>
+				<circle class="st1" cx="1343" cy="159" r="3"/>
+				<circle class="st1" cx="1234" cy="377" r="6"/>
+				<circle class="st1" cx="1797" cy="334" r="3"/>
+				<circle class="st1" cx="1320" cy="844" r="3"/>
+				<circle class="st1" cx="51" cy="43" r="3"/>
+				<circle class="st1" cx="1129" cy="556" r="6"/>
+				<circle class="st1" cx="789" cy="358" r="3"/>
+				<circle class="st1" cx="1076" cy="311" r="6"/>
+				
+					<ellipse transform="matrix(0.9987 -4.999472e-02 4.999472e-02 0.9987 -0.3853 70.5963)" class="st1" cx="1411" cy="43" rx="9" ry="9"/>
+				<circle class="st1" cx="852.5" cy="644.5" r="7.5"/>
+				<circle class="st1" cx="419" cy="429" r="6"/>
+				<circle class="st1" cx="94" cy="186" r="6"/>
+				<circle class="st1" cx="314" cy="504" r="6"/>
+				<circle class="st1" cx="151" cy="725" r="6"/>
+				<circle class="st1" cx="54" cy="930" r="6"/>
+				<circle class="st1" cx="347" cy="165" r="3"/>
+				<circle class="st1" cx="854" cy="43" r="3"/>
+				<circle class="st1" cx="594" cy="276" r="6"/>
+				<circle class="st1" cx="662" cy="128" r="3"/>
+				<circle class="st1" cx="295" cy="52" r="6"/>
+				<circle class="st1" cx="129" cy="383" r="6"/>
+			</g>
+
+
+			<!-- Clickable Clouds -->
+			<g id="Clickable-Clouds">
+				<circle class="st2" cx="905.6" cy="886.6" r="115.5"/>
+				<circle class="st2" cx="755.5" cy="95.1" r="83.9"/>
+				<circle class="st2" cx="1260" cy="941.9" r="111.3"/>
+				<circle class="st2" cx="237.7" cy="55.4" r="108.7"/>
+				<circle class="st2" cx="290.7" cy="963.7" r="71.3"/>
+				<circle class="st2" cx="456.2" cy="965.3" r="103.6"/>
+				<circle class="st2" cx="1539.2" cy="1003.9" r="108.1"/>
+				<circle class="st2" cx="1177.9" cy="19" r="87"/>
+				<circle class="st2" cx="599.9" cy="34" r="87"/>
+				<circle class="st2" cx="1747.2" cy="-0.1" r="108.1"/>
+			</g>
+
+
+			<!-- Clouds for looks -->
+			<g id="Clouds-Looks">
+				<g>
+					<rect x="1075.3" y="1126" class="st3" width="102.5" height="102.5"/>
+					<circle class="st1" cx="1126.6" cy="1177.3" r="51.2"/>
+				</g>
+				<g>
+					<rect x="998.4" y="1140.9" class="st3" width="217.2" height="217.2"/>
+					<circle class="st1" cx="1107" cy="1249.5" r="108.6"/>
+				</g>
+				<g>
+					<rect x="920.5" y="1174.9" class="st3" width="189.8" height="189.8"/>
+					<circle class="st1" cx="1015.4" cy="1269.8" r="94.9"/>
+				</g>
+				<g>
+					<rect x="881.9" y="1198.6" class="st3" width="175.9" height="175.9"/>
+					<circle class="st1" cx="969.9" cy="1286.5" r="87.9"/>
+				</g>
+				<g>
+					<rect x="863.7" y="1178.3" class="st3" width="119.2" height="119.2"/>
+					<circle class="st1" cx="923.3" cy="1237.9" r="59.6"/>
+				</g>
+				<g>
+					<rect x="782.8" y="1130.3" class="st3" width="132.1" height="132.1"/>
+					<circle class="st1" cx="848.9" cy="1196.4" r="66.1"/>
+				</g>
+				<g>
+					<rect x="663.5" y="1129.6" class="st3" width="190" height="190"/>
+					<circle class="st1" cx="758.5" cy="1224.6" r="95"/>
+				</g>
+				<g>
+					<rect x="597.1" y="1175.3" class="st3" width="115.4" height="115.4"/>
+					<circle class="st1" cx="654.8" cy="1233" r="57.7"/>
+				</g>
+				<g>
+					<rect x="560.8" y="1064.3" class="st3" width="154.9" height="154.9"/>
+					<circle class="st1" cx="638.3" cy="1141.7" r="77.4"/>
+				</g>
+				<g>
+					<rect x="544.5" y="1178.9" class="st3" width="151.4" height="151.4"/>
+					<circle class="st1" cx="620.2" cy="1254.5" r="75.7"/>
+				</g>
+				<g>
+					<rect x="623" y="1158.5" class="st3" width="197.3" height="197.3"/>
+					<circle class="st1" cx="721.7" cy="1257.2" r="98.7"/>
+				</g>
+				<g>
+					<rect x="768.1" y="1115.2" class="st3" width="123.1" height="123.1"/>
+					<circle class="st1" cx="829.6" cy="1176.7" r="61.5"/>
+				</g>
+				<g>
+					<rect x="783.7" y="1046.1" class="st3" width="106.4" height="106.4"/>
+					<circle class="st1" cx="836.9" cy="1099.3" r="53.2"/>
+				</g>
+				<g>
+					<rect x="830.7" y="1125" class="st3" width="122.4" height="122.4"/>
+					<circle class="st1" cx="891.9" cy="1186.2" r="61.2"/>
+				</g>
+				<g>
+					<rect x="975.5" y="1110.6" class="st3" width="207.5" height="207.5"/>
+					<circle class="st1" cx="1079.3" cy="1214.3" r="103.8"/>
+				</g>
+				<g>
+					<rect x="995.3" y="1023.3" class="st3" width="192.4" height="192.4"/>
+					<circle class="st1" cx="1091.5" cy="1119.5" r="96.2"/>
+				</g>
+				<g>
+					<rect x="1076.9" y="945.6" class="st3" width="188.9" height="188.9"/>
+					<circle class="st1" cx="1171.3" cy="1040.1" r="94.5"/>
+				</g>
+				<g>
+					<rect x="1219.7" y="928.8" class="st3" width="133.8" height="133.8"/>
+					<circle class="st1" cx="1286.6" cy="995.7" r="66.9"/>
+				</g>
+				<g>
+					<rect x="1222.6" y="956.1" class="st3" width="162.6" height="162.6"/>
+					<circle class="st1" cx="1303.9" cy="1037.4" r="81.3"/>
+				</g>
+				<g>
+					<rect x="1134.5" y="974.1" class="st3" width="221.1" height="221.1"/>
+					<circle class="st1" cx="1245.1" cy="1084.7" r="110.6"/>
+				</g>
+				<g>
+					<rect x="1059.8" y="845.2" class="st3" width="96.5" height="96.5"/>
+					<circle class="st1" cx="1108" cy="893.5" r="48.3"/>
+				</g>
+				<g>
+					<rect x="823.1" y="899" class="st3" width="202.3" height="202.3"/>
+					<circle class="st1" cx="924.3" cy="1000.1" r="101.1"/>
+				</g>
+				<g>
+					<rect x="766.5" y="966.7" class="st3" width="203.5" height="203.5"/>
+					<circle class="st1" cx="868.3" cy="1068.5" r="101.8"/>
+				</g>
+				<g>
+					<rect x="775.3" y="964.8" class="st3" width="120.5" height="120.5"/>
+					<circle class="st1" cx="835.5" cy="1025" r="60.3"/>
+				</g>
+				<g>
+					<rect x="644" y="924.8" class="st3" width="102" height="102"/>
+					<circle class="st1" cx="695" cy="975.8" r="51"/>
+				</g>
+				<g>
+					<rect x="534.4" y="1006.7" class="st3" width="202.3" height="202.3"/>
+					<circle class="st1" cx="635.6" cy="1107.9" r="101.2"/>
+				</g>
+				<g>
+					<rect x="424.2" y="908.4" class="st3" width="199.2" height="199.2"/>
+					<circle class="st1" cx="523.7" cy="1008" r="99.6"/>
+				</g>
+				<g>
+					<rect x="447.5" y="870.6" class="st3" width="195.7" height="195.7"/>
+					<circle class="st1" cx="545.3" cy="968.5" r="97.9"/>
+				</g>
+				<g>
+					<rect x="511.6" y="969.9" class="st3" width="166.5" height="166.5"/>
+					<circle class="st1" cx="594.8" cy="1053.1" r="83.2"/>
+				</g>
+				<g>
+					<rect x="713.2" y="977.7" class="st3" width="177.5" height="177.5"/>
+					<circle class="st1" cx="802" cy="1066.5" r="88.7"/>
+				</g>
+				<g>
+					<rect x="807.7" y="974.1" class="st3" width="165.8" height="165.8"/>
+					<circle class="st1" cx="890.6" cy="1057" r="82.9"/>
+				</g>
+				<g>
+					<rect x="983.5" y="917.5" class="st3" width="149.9" height="149.9"/>
+					<circle class="st1" cx="1058.4" cy="992.4" r="74.9"/>
+				</g>
+				<g>
+					<rect x="993.4" y="930.8" class="st3" width="193.9" height="193.9"/>
+					<circle class="st1" cx="1090.4" cy="1027.7" r="97"/>
+				</g>
+				<g>
+					<rect x="915" y="1027.3" class="st3" width="218.1" height="218.1"/>
+					<circle class="st1" cx="1024" cy="1136.4" r="109"/>
+				</g>
+				<g>
+					<rect x="885.8" y="1056.8" class="st3" width="127.7" height="127.7"/>
+					<circle class="st1" cx="949.7" cy="1120.7" r="63.8"/>
+				</g>
+				<g>
+					<rect x="796.7" y="1033" class="st3" width="124.9" height="124.9"/>
+					<circle class="st1" cx="859.2" cy="1095.4" r="62.4"/>
+				</g>
+				<g>
+					<rect x="625.4" y="977.3" class="st3" width="159.9" height="159.9"/>
+					<circle class="st1" cx="705.4" cy="1057.3" r="80"/>
+				</g>
+				<g>
+					<rect x="563.2" y="979.1" class="st3" width="157" height="157"/>
+					<circle class="st1" cx="641.7" cy="1057.6" r="78.5"/>
+				</g>
+				<g>
+					<rect x="444.8" y="1107.1" class="st3" width="180.5" height="180.5"/>
+					<circle class="st1" cx="535.1" cy="1197.4" r="90.3"/>
+				</g>
+				<g>
+					<rect x="619.4" y="1187" class="st3" width="156.6" height="156.6"/>
+					<circle class="st1" cx="697.7" cy="1265.3" r="78.3"/>
+				</g>
+				<g>
+					<rect x="671.7" y="1061.2" class="st3" width="168.3" height="168.3"/>
+					<circle class="st1" cx="755.8" cy="1145.4" r="84.1"/>
+				</g>
+				<g>
+					<rect x="677.6" y="967.1" class="st3" width="209.6" height="209.6"/>
+					<circle class="st1" cx="782.4" cy="1071.8" r="104.8"/>
+				</g>
+				<g>
+					<rect x="740.4" y="1003.4" class="st3" width="135.4" height="135.4"/>
+					<circle class="st1" cx="808.1" cy="1071.1" r="67.7"/>
+				</g>
+				<g>
+					<rect x="832.5" y="1042.3" class="st3" width="104.5" height="104.5"/>
+					<circle class="st1" cx="884.8" cy="1094.6" r="52.3"/>
+				</g>
+				<g>
+					<rect x="983.5" y="1069.2" class="st3" width="96.4" height="96.4"/>
+					<circle class="st1" cx="1031.7" cy="1117.4" r="48.2"/>
+				</g>
+				<g>
+					<rect x="1086.6" y="942.9" class="st3" width="105.7" height="105.7"/>
+					<circle class="st1" cx="1139.4" cy="995.7" r="52.9"/>
+				</g>
+				<g>
+					<rect x="1056.6" y="765.4" class="st3" width="134.8" height="134.8"/>
+					<circle class="st1" cx="1124" cy="832.8" r="67.4"/>
+				</g>
+				<g>
+					<rect x="898.3" y="778.1" class="st3" width="167.3" height="167.3"/>
+					<circle class="st1" cx="982" cy="861.8" r="83.6"/>
+				</g>
+				<g>
+					<rect x="697.9" y="773.6" class="st3" width="178.1" height="178.1"/>
+					<circle class="st1" cx="787" cy="862.6" r="89.1"/>
+				</g>
+				<g>
+					<rect x="513" y="838" class="st3" width="229.5" height="229.5"/>
+					<circle class="st1" cx="627.8" cy="952.8" r="114.7"/>
+				</g>
+				<g>
+					<rect x="446.4" y="917.8" class="st3" width="95.7" height="95.7"/>
+					<circle class="st1" cx="494.3" cy="965.6" r="47.8"/>
+				</g>
+				<g>
+					<rect x="523.4" y="918.9" class="st3" width="153.7" height="153.7"/>
+					<circle class="st1" cx="600.3" cy="995.7" r="76.8"/>
+				</g>
+				<g>
+					<rect x="692.3" y="913" class="st3" width="159" height="159"/>
+					<circle class="st1" cx="771.8" cy="992.6" r="79.5"/>
+				</g>
+				<g>
+					<rect x="727.3" y="895.1" class="st3" width="205.2" height="205.2"/>
+					<circle class="st1" cx="829.9" cy="997.7" r="102.6"/>
+				</g>
+				<g>
+					<rect x="827.5" y="878.3" class="st3" width="225.4" height="225.4"/>
+					<circle class="st1" cx="940.2" cy="991.1" r="112.7"/>
+				</g>
+				<g>
+					<rect x="918.2" y="893.3" class="st3" width="150.1" height="150.1"/>
+					<circle class="st1" cx="993.2" cy="968.3" r="75"/>
+				</g>
+				<g>
+					<rect x="965" y="833.7" class="st3" width="224.5" height="224.5"/>
+					<circle class="st1" cx="1077.2" cy="945.9" r="112.2"/>
+				</g>
+				<g>
+					<rect x="209.3" y="974" class="st3" width="152.6" height="152.6"/>
+					<circle class="st1" cx="285.6" cy="1050.3" r="76.3"/>
+				</g>
+				<g>
+					<rect x="280.8" y="1039.3" class="st3" width="159.8" height="159.8"/>
+					<circle class="st1" cx="360.7" cy="1119.2" r="79.9"/>
+				</g>
+				<g>
+					<rect x="450.8" y="1066.6" class="st3" width="107.6" height="107.6"/>
+					<circle class="st1" cx="504.5" cy="1120.4" r="53.8"/>
+				</g>
+				<g>
+					<rect x="339" y="974.2" class="st3" width="96.2" height="96.2"/>
+					<circle class="st1" cx="387" cy="1022.3" r="48.1"/>
+				</g>
+				<g>
+					<rect x="382.7" y="1054.1" class="st3" width="135.5" height="135.5"/>
+					<circle class="st1" cx="450.4" cy="1121.8" r="67.7"/>
+				</g>
+				<g>
+					<rect x="164.5" y="942.7" class="st3" width="219.6" height="219.6"/>
+					<circle class="st1" cx="274.3" cy="1052.5" r="109.8"/>
+				</g>
+				<g>
+					<rect x="303.4" y="874" class="st3" width="163.5" height="163.5"/>
+					<circle class="st1" cx="385.2" cy="955.8" r="81.8"/>
+				</g>
+				<g>
+					<rect x="400.8" y="878.1" class="st3" width="147" height="147"/>
+					<circle class="st1" cx="474.3" cy="951.6" r="73.5"/>
+				</g>
+				<g>
+					<rect x="271.2" y="918" class="st3" width="104.3" height="104.3"/>
+					<circle class="st1" cx="323.4" cy="970.2" r="52.2"/>
+				</g>
+				<g>
+					<rect x="1569.6" y="869.5" class="st3" width="114.3" height="114.3"/>
+					<circle class="st1" cx="1626.8" cy="926.6" r="57.2"/>
+				</g>
+				<g>
+					<rect x="1345.2" y="901.8" class="st3" width="171.3" height="171.3"/>
+					<circle class="st1" cx="1430.8" cy="987.4" r="85.7"/>
+				</g>
+				<g>
+					<rect x="1234" y="887" class="st3" width="127.1" height="127.1"/>
+					<circle class="st1" cx="1297.6" cy="950.6" r="63.6"/>
+				</g>
+				<g>
+					<rect x="1080.4" y="949" class="st3" width="135.6" height="135.6"/>
+					<circle class="st1" cx="1148.2" cy="1016.8" r="67.8"/>
+				</g>
+				<g>
+					<rect x="1036" y="994.8" class="st3" width="213.2" height="213.2"/>
+					<circle class="st1" cx="1142.6" cy="1101.4" r="106.6"/>
+				</g>
+				<g>
+					<g>
+						<g>
+							<rect x="1302.7" y="1021.6" class="st3" width="204" height="204"/>
+							<circle class="st1" cx="1404.7" cy="1123.6" r="102"/>
+						</g>
+						<g>
+							<rect x="1430.7" y="970.3" class="st3" width="226.8" height="226.8"/>
+							<circle class="st1" cx="1544.1" cy="1083.7" r="113.4"/>
+						</g>
+						<g>
+							<rect x="1660.5" y="960.4" class="st3" width="135.8" height="135.8"/>
+							<circle class="st1" cx="1728.4" cy="1028.3" r="67.9"/>
+						</g>
+						<g>
+							<rect x="1687.3" y="939" class="st3" width="226.8" height="226.8"/>
+							<circle class="st1" cx="1800.7" cy="1052.4" r="113.4"/>
+						</g>
+						<g>
+							<rect x="1796.6" y="997.8" class="st3" width="227.7" height="227.7"/>
+							<circle class="st1" cx="1910.5" cy="1111.7" r="113.9"/>
+						</g>
+					</g>
+				</g>
+				<g>
+					<g>
+						<g>
+							<rect x="1799.9" y="-97" class="st3" width="131.6" height="131.6"/>
+							<circle class="st1" cx="1865.6" cy="-31.2" r="65.8"/>
+						</g>
+						<g>
+							<rect x="1754.9" y="-65.9" class="st3" width="104" height="104"/>
+							<circle class="st1" cx="1806.9" cy="-13.9" r="52"/>
+						</g>
+						<g>
+							<rect x="1593.1" y="-101.7" class="st3" width="192.1" height="192.1"/>
+							<circle class="st1" cx="1689.2" cy="-5.6" r="96.1"/>
+						</g>
+						<g>
+							<rect x="1505.1" y="-115.3" class="st3" width="207.2" height="207.2"/>
+							<circle class="st1" cx="1608.7" cy="-11.7" r="103.6"/>
+						</g>
+						<g>
+							<rect x="1459.4" y="-109.6" class="st3" width="151.9" height="151.9"/>
+							<circle class="st1" cx="1535.4" cy="-33.6" r="76"/>
+						</g>
+						<g>
+							<rect x="1349.8" y="-56.8" class="st3" width="119.6" height="119.6"/>
+							<circle class="st1" cx="1409.6" cy="2.9" r="59.8"/>
+						</g>
+						<g>
+							<rect x="1164.2" y="-81.9" class="st3" width="151.4" height="151.4"/>
+							<circle class="st1" cx="1239.9" cy="-6.2" r="75.7"/>
+						</g>
+						<g>
+							<rect x="1029.6" y="-48.3" class="st3" width="139.9" height="139.9"/>
+							<circle class="st1" cx="1099.5" cy="21.6" r="69.9"/>
+						</g>
+						<g>
+							<rect x="962.6" y="-37.6" class="st3" width="130.3" height="130.3"/>
+							<circle class="st1" cx="1027.8" cy="27.6" r="65.2"/>
+						</g>
+						<g>
+							<rect x="801" y="2.5" class="st3" width="176.4" height="176.4"/>
+							<circle class="st1" cx="889.2" cy="90.7" r="88.2"/>
+						</g>
+						<g>
+							<rect x="715.9" y="-42.1" class="st3" width="198.5" height="198.5"/>
+							<circle class="st1" cx="815.1" cy="57.1" r="99.3"/>
+						</g>
+						<g>
+							<rect x="647.6" y="8.4" class="st3" width="123.9" height="123.9"/>
+							<circle class="st1" cx="709.5" cy="70.3" r="61.9"/>
+						</g>
+						<g>
+							<rect x="453.9" y="-73.3" class="st3" width="166.5" height="166.5"/>
+							<circle class="st1" cx="537.2" cy="9.9" r="83.2"/>
+						</g>
+						<g>
+							<rect x="367.2" y="-61.7" class="st3" width="129.1" height="129.1"/>
+							<circle class="st1" cx="431.8" cy="2.8" r="64.5"/>
+						</g>
+						<g>
+							<rect x="195.3" y="-96.2" class="st3" width="217.1" height="217.1"/>
+							<circle class="st1" cx="303.9" cy="12.3" r="108.5"/>
+						</g>
+						<g>
+							<rect x="87.1" y="-56.8" class="st3" width="181.7" height="181.7"/>
+							<circle class="st1" cx="177.9" cy="34" r="90.8"/>
+						</g>
+						<g>
+							<rect x="-41.1" y="-65.2" class="st3" width="217.7" height="217.7"/>
+							<circle class="st1" cx="67.7" cy="43.7" r="108.8"/>
+						</g>
+						<g>
+							<rect x="-111.7" y="75.7" class="st3" width="133.6" height="133.6"/>
+							<circle class="st1" cx="-44.8" cy="142.5" r="66.8"/>
+						</g>
+					</g>
+				</g>
+			</g>
+
+		</svg>
+	</div>
+	
+
+
+	<div class="container absolute-center text-center">
+
+		<button class="btn btn-2 btn-2g" disabled>Start Game</button>
+
+		<div class="score">
+			-  -
+		</div>
+
+		<br>
+		<span class="status"></span>
+
+
+		<div class="strictMode">
+			<h2>Strict Mode</h2>
+			<label class="switch">
+			  <input type="checkbox">
+			  <span class="slider round"></span>
+			</label>
+		</div>
+
+	</div>
+
+	<div class="easteregg">
+		<img src="https://cdn.rawgit.com/Ciaxur/GitKrakenTest/Patches/Content/Pickle%20Rick.svg" alt="Pickle Rick">
+	</div>
+
+</body>
+
+</html>
